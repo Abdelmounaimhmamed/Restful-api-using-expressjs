@@ -41,22 +41,32 @@ const addUser = (req,res) => {
 }
 const updateUser = (req,res) => {
     const  id = parseInt(req.params.id);
-    const {
-        name ,
-        email ,
-        status} = req.body;
-
-    const NewData = {
-        name  : name ,
-        email : email,
-        status : status
-    };
-
-    const index = members.findIndex(mem => mem.id === id);
-    members[index].name = NewData.name;
-    members[index].email = NewData.email;
-    members[index].status = NewData.status;
-    res.json(members[index]); 
+    const state = members.some(mem => mem.id === id);
+    if (!state){
+        res.json({message : "user not available to update"});
+    }else {
+        if (!req.body.name || !req.body.email || !req.body.status){
+            res.json("pleae enter ur data !");
+        }else {
+            const {
+                name ,
+                email ,
+                status} = req.body;
+        
+            const NewData = {
+                name  : name ,
+                email : email,
+                status : status
+            };
+        
+            const index = members.findIndex(mem => mem.id === id);
+            members[index].name = NewData.name;
+            members[index].email = NewData.email;
+            members[index].status = NewData.status;
+            res.json(members[index]); 
+        }
+    }
+   
 }
 
 

@@ -7,7 +7,7 @@ let members = [
     },
     {
         id : 2,
-        name : "hajar",
+        name : "abdelmounaim",
         email : "abdelmounaim@email.com",
         status : "active"
     },
